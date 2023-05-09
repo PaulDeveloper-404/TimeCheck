@@ -1,1 +1,1 @@
-  <title>TimeCheck</title>
+  <title>AMS - Dashboard</title>
