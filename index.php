@@ -14,14 +14,29 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="img/logo/attnlg.jpg" rel="icon">
-    <title>Code Camp BD - Login</title>
+    <title>TimeCheck</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/ruang-admin.min.css" rel="stylesheet">
+    <link href="css/ruang-admin.css" rel="stylesheet">
+
 
 </head>
 
-<body class="bg-gradient-login" style="background-image: url('img/logo/loral1.jpe00g');">
+
+<div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
     <!-- Login Content -->
     <div class="container-login">
         <div class="row justify-content-center">
@@ -31,9 +46,9 @@ session_start();
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="login-form">
-                                    <h5 align="center">STUDENT ATTENDANCE SYSTEM</h5>
+                                    <!-- <h5 align="center">STUDENT ATTENDANCE SYSTEM</h5> -->
                                     <div class="text-center">
-                                        <img src="img/logo/attnlg.jpg" style="width:100px;height:100px">
+                                        <img src="img/logo/timecheck.png" style="width:250px;height:150px;margin-left:15px;">
                                         <br><br>
                                         <h1 class="h4 text-gray-900 mb-4">Login Panel</h1>
                                     </div>
@@ -60,10 +75,12 @@ session_start();
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-success btn-block" value="Login" name="login" />
+                                           
                                         </div>
                                     </form>
-
+                                    </div >
                                     <?php
+                                  
 
   if(isset($_POST['login'])){
 
