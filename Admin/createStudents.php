@@ -253,7 +253,7 @@ if(isset($_POST['save'])){
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">All Student</h6>
                 </div>
-                <div class="table-responsive p-3">
+                <div class="table-responsive p-">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
@@ -263,7 +263,7 @@ if(isset($_POST['save'])){
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <!-- <th>Class Arm</th> -->
                         <th>Date Created</th>
                          <th>Edit</th>
                         <th>Delete</th>

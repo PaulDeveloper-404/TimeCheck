@@ -26,7 +26,7 @@ include '../Includes/session.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/attnlg.jpg" rel="icon">
+  <link href="img/tclogo.png" rel="icon">
   <title>Dashboard</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -107,7 +107,7 @@ $class = mysqli_num_rows($query1);
 $query1=mysqli_query($conn,"SELECT * from tblclassarms");                       
 $classArms = mysqli_num_rows($query1);
 ?>
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -115,8 +115,7 @@ $classArms = mysqli_num_rows($query1);
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Class Arms</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $classArms;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
-                        <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span> -->
+                      
                       </div>
                     </div>
                     <div class="col-auto">
@@ -126,7 +125,7 @@ $classArms = mysqli_num_rows($query1);
                 </div>
               </div>
             </div>
-            
+             -->
             <!-- Std Att Card  -->
             <?php 
 $query1=mysqli_query($conn,"SELECT * from tblattendance");                       
@@ -183,7 +182,7 @@ $totAttendance = mysqli_num_rows($query1);
             $query1=mysqli_query($conn,"SELECT * from tblsessionterm");                       
             $sessTerm = mysqli_num_rows($query1);
             ?>
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
                           <div class="card h-100">
                             <div class="card-body">
                               <div class="row no-gutters align-items-center">
@@ -191,9 +190,7 @@ $totAttendance = mysqli_num_rows($query1);
                                   <div class="text-xs font-weight-bold text-uppercase mb-1">Session & Terms</div>
                                   <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sessTerm;?></div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
-                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span> -->
-                                  </div>
+                                   
                                 </div>
                                 <div class="col-auto">
                                   <i class="fas fa-calendar-alt fa-2x text-warning"></i>
@@ -201,7 +198,7 @@ $totAttendance = mysqli_num_rows($query1);
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- Terms Card  -->
@@ -209,7 +206,7 @@ $totAttendance = mysqli_num_rows($query1);
             $query1=mysqli_query($conn,"SELECT * from tblterm");                       
             $termonly = mysqli_num_rows($query1);
             ?>
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
                           <div class="card h-100">
                             <div class="card-body">
                               <div class="row no-gutters align-items-center">
@@ -217,8 +214,7 @@ $totAttendance = mysqli_num_rows($query1);
                                   <div class="text-xs font-weight-bold text-uppercase mb-1">Terms</div>
                                   <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $termonly;?></div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
-                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span> -->
+
                                   </div>
                                 </div>
                                 <div class="col-auto">
@@ -227,7 +223,7 @@ $totAttendance = mysqli_num_rows($query1);
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
           <!--Row-->
 
       
