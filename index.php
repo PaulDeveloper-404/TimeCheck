@@ -13,7 +13,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="img/logo/attnlg.jpg" rel="icon">
+    <link href="img/timecolor.png" rel="icon">
     <title>TimeCheck</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@ session_start();
                     <li></li>
             </ul>
     <!-- Login Content -->
-    <div class="container-login">
+    <div class="container-login" style="margin-top:-23px;">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card shadow-sm my-5">
@@ -48,9 +48,9 @@ session_start();
                                 <div class="login-form">
                                     <!-- <h5 align="center">STUDENT ATTENDANCE SYSTEM</h5> -->
                                     <div class="text-center">
-                                        <img src="img/logo/timecheck.png" style="width:250px;height:150px;margin-left:15px;">
+                                        <img src="img/timecheck.png" style="width:350px;height:290px;margin-left:-10px;margin-top:-55px;">
                                         <br><br>
-                                        <h1 class="h4 text-gray-900 mb-4">Login Panel</h1>
+                                        <h1 class="h4 text-gray-900 mb-4" style="margin-top:-80px;">Login Panel</h1>
                                     </div>
                                     <form class="user" method="Post" action="">
                                         <div class="form-group">
