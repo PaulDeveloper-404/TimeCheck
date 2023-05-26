@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -7,14 +7,14 @@ include '../Includes/session.php';
 //------------------------SAVE--------------------------------------------------
 
 if(isset($_POST['save'])){
-    
+
     $classId=$_POST['classId'];
     $classArmName=$_POST['classArmName'];
-   
+
     $query=mysqli_query($conn,"select * from tblclassarms where classArmName ='$classArmName' and classId = '$classId'");
     $ret=mysqli_fetch_array($query);
 
-    if($ret > 0){ 
+    if($ret > 0){
 
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Class Arm Already Exists!</div>";
     }
@@ -23,7 +23,7 @@ if(isset($_POST['save'])){
         $query=mysqli_query($conn,"insert into tblclassarms(classId,classArmName,isAssigned) value('$classId','$classArmName','0')");
 
     if ($query) {
-        
+
         $statusMsg = "<div class='alert alert-success'  style='margin-right:700px;'>Created Successfully!</div>";
     }
     else
@@ -52,17 +52,17 @@ if(isset($_POST['save'])){
         //------------UPDATE-----------------------------
 
         if(isset($_POST['update'])){
-    
+
             $classId=$_POST['classId'];
             $classArmName=$_POST['classArmName'];
 
             $query=mysqli_query($conn,"update tblclassarms set classId = '$classId', classArmName='$classArmName' where Id='$Id'");
 
             if ($query) {
-                
+
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createClassArms.php\")
-                </script>"; 
+                </script>";
             }
             else
             {
@@ -84,13 +84,13 @@ if(isset($_POST['save'])){
 
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createClassArms.php\")
-                </script>";  
+                </script>";
         }
         else{
 
-            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>"; 
+            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
          }
-      
+
   }
 
 
@@ -126,10 +126,10 @@ if(isset($_POST['save'])){
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Create Class Arms</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create Class Program</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create Class Arms</li>
+              <li class="breadcrumb-item active" aria-current="page">Create Class Program</li>
             </ol>
           </div>
 
@@ -138,7 +138,7 @@ if(isset($_POST['save'])){
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Create Class Arms</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Create Class Program</h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
@@ -149,7 +149,7 @@ if(isset($_POST['save'])){
                          <?php
                         $qry= "SELECT * FROM tblclass ORDER BY className ASC";
                         $result = $conn->query($qry);
-                        $num = $result->num_rows;		
+                        $num = $result->num_rows;
                         if ($num > 0){
                           echo ' <select required name="classId" class="form-control mb-3">';
                           echo'<option value="">--Select Class--</option>';
@@ -158,11 +158,11 @@ if(isset($_POST['save'])){
                               }
                                   echo '</select>';
                               }
-                            ?>  
+                            ?>
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm Name<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="classArmName" value="<?php echo $row['classArmName'];?>" id="exampleInputFirstName" placeholder="Class Arm Name">
+                        <label class="form-control-label">Class Program Name<span class="text-danger ml-2">*</span></label>
+                      <input type="text" class="form-control" name="classArmName" value="<?php echo $row['classArmName'];?>" id="exampleInputFirstName" placeholder="Class Program Name">
                         </div>
                     </div>
                       <?php
@@ -172,11 +172,11 @@ if(isset($_POST['save'])){
                     <button type="submit" name="update" class="btn btn-warning">Update</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <?php
-                    } else {           
+                    } else {
                     ?>
                     <button type="submit" name="save" class="btn btn-primary">Save</button>
                     <?php
-                    }         
+                    }
                     ?>
                   </form>
                 </div>
@@ -187,7 +187,7 @@ if(isset($_POST['save'])){
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">All Class Arm</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">All Class Programs</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -195,17 +195,17 @@ if(isset($_POST['save'])){
                       <tr>
                         <th>#</th>
                         <th>Class Name</th>
-                        <th>Class Arm Name</th>
+                        <th>Class Program Name</th>
                          <th>Status</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
                     </thead>
-                  
+
                     <tbody>
 
                   <?php
-                      $query = "SELECT tblclassarms.Id,tblclassarms.isAssigned,tblclass.className,tblclassarms.classArmName 
+                      $query = "SELECT tblclassarms.Id,tblclassarms.isAssigned,tblclass.className,tblclassarms.classArmName
                       FROM tblclassarms
                       INNER JOIN tblclass ON tblclass.Id = tblclassarms.classId";
                       $rs = $conn->query($query);
@@ -213,7 +213,7 @@ if(isset($_POST['save'])){
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                               if($rows['isAssigned'] == '1'){$status = "Assigned";}else{$status = "UnAssigned";}
@@ -231,12 +231,12 @@ if(isset($_POST['save'])){
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
+
                       ?>
                     </tbody>
                   </table>
@@ -283,7 +283,7 @@ if(isset($_POST['save'])){
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

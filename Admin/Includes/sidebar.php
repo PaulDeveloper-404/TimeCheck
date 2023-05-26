@@ -31,12 +31,12 @@
      <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapusers" aria-expanded="true" aria-controls="collapseBootstrapusers">
              <i class="fas fa-code-branch"></i>
-             <span>Manage Class Arms</span>
+             <span>Manage Class Programs</span>
          </a>
          <div id="collapseBootstrapusers" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Manage Class Arms</h6>
-                 <a class="collapse-item" href="createClassArms.php">Create Class Arms</a>
+                 <a class="collapse-item" href="createClassArms.php">Create Class Programs</a>
                  <!-- <a class="collapse-item" href="usersList.php">User List</a> -->
              </div>
          </div>

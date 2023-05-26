@@ -49,14 +49,23 @@ session_start();
                                     <div class="text-center">
                                         <img src="img/logo/timecheck.png" style="width:250px;height:150px;margin-left:15px;">
                                         <br><br>
-                                        <h1 class="h4 text-gray-900 mb-4">Login Panel</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Signup Panel</h1>
                                     </div>
                                     <form class="user" method="Post" action="">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" required name="username" id="exampleInputEmail" placeholder="Enter Email Address">
+                                    <div class="form-group">
+                                            <input type="text" class="form-control" required name="firstname" placeholder="Enter First Name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" required class="form-control" id="exampleInputPassword" placeholder="Enter Password">
+                                            <input type="text" class="form-control" required name="lastname" placeholder="Enter Last Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" required name="phone" placeholder="Enter Phone Number">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" required name="email" placeholder="Enter Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" required class="form-control" placeholder="Enter Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
@@ -64,88 +73,38 @@ session_start();
                                               </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-success btn-block" value="Login" name="login" />
+                                            <input type="submit" class="btn btn-success btn-block" value="Register" name="signup" />
                                         </div>
-                                            <a href="signup.php" class="btn btn-success btn-block">Signup</a>
                                     </form>
                                     </div >
-                                    <?php
 
+<?php
+if(isset($_POST['signup'])){
+  $firstname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $password = $_POST['password'];
 
+  $sql = "INSERT INTO tblclassteacher(firstName, lastName, emailAddress, password, phoneNo, dateCreated)
+  VALUES ('$firstname','$lastname','$email','$password','$phone', now())";
+  $success = $conn->query($sql);
 
-if(isset($_POST['login'])){
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password = md5($password);
-
-    if($username == 'admin@mail.com'){
-        $query = "SELECT * FROM tbladmin WHERE emailAddress = '$username' AND password = '$password'";
-        $rs = $conn->query($query);
-        $num = $rs->num_rows;
-        $rows = $rs->fetch_assoc();
-
-        if($num > 0){
-
-          $_SESSION['userId'] = $rows['Id'];
-          $_SESSION['firstName'] = $rows['firstName'];
-          $_SESSION['lastName'] = $rows['lastName'];
-          $_SESSION['emailAddress'] = $rows['emailAddress'];
-
-
-          echo "<script type = \"text/javascript\">
-          window.location = (\"Admin/index.php\")
-          </script>";
-        }
-
-        else{
-
-          echo "<div class='alert alert-danger' role='alert'>
-          Invalid Username/Password!
-          </div>";
-
-        }
-    }else{
-      $query = "SELECT * FROM tblclassteacher WHERE emailAddress = '$username' AND password = '$password'";
-      $rs = $conn->query($query);
-      $num = $rs->num_rows;
-      $rows = $rs->fetch_assoc();
-
-      if($num > 0){
-
-        $_SESSION['userId'] = $rows['Id'];
-        $_SESSION['firstName'] = $rows['firstName'];
-        $_SESSION['lastName'] = $rows['lastName'];
-        $_SESSION['emailAddress'] = $rows['emailAddress'];
-        $_SESSION['classId'] = $rows['classId'];
-        $_SESSION['classArmId'] = $rows['classArmId'];
-
-        echo "<script type = \"text/javascript\">
-        window.location = (\"ClassTeacher/index.php\")
-        </script>";
-      }
-
-      else{
-
-        echo "<div class='alert alert-danger' role='alert'>
-        Invalid Username/Password!
-        </div>";
-
-      }
-
-    }
-    }
-
-
+  if($success){
+    echo '<script language="javascript">';
+    echo 'alert("information successfully sent")';
+    echo '</script>';
+    exit();
+    header('Location: http://localhost/TimeCheck/index.php');
+  }else{
+    echo '<script language="javascript">';
+    echo 'alert("information failed sent")';
+    echo '</script>';
+    exit();
+  }
+}
 ?>
 
-                                    <!-- <hr>
-                    <a href="index.html" class="btn btn-google btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a> -->
 
 
                                     <div class="text-center">
@@ -162,7 +121,7 @@ if(isset($_POST['login'])){
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/ruang-admin.min.js"></script>
+    <!-- <script src="js/ruang-admin.min.js"></script> -->
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -7,8 +7,8 @@ include '../Includes/session.php';
 //------------------------SAVE--------------------------------------------------
 
 if(isset($_POST['save'])){
-    
-    $firstName=$_POST['firstName'];
+
+  $firstName=$_POST['firstName'];
   $lastName=$_POST['lastName'];
   $emailAddress=$_POST['emailAddress'];
 
@@ -16,27 +16,27 @@ if(isset($_POST['save'])){
   $classId=$_POST['classId'];
   $classArmId=$_POST['classArmId'];
   $dateCreated = date("Y-m-d");
-   
+
     $query=mysqli_query($conn,"select * from tblclassteacher where emailAddress ='$emailAddress'");
     $ret=mysqli_fetch_array($query);
 
     $sampPass = "pass123";
     $sampPass_2 = md5($sampPass);
 
-    if($ret > 0){ 
+    if($ret > 0){
 
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Email Address Already Exists!</div>";
     }
     else{
 
-    $query=mysqli_query($conn,"INSERT into tblclassteacher(firstName,lastName,emailAddress,password,phoneNo,classId,classArmId,dateCreated) 
+    $query=mysqli_query($conn,"INSERT into tblclassteacher(firstName,lastName,emailAddress,password,phoneNo,classId,classArmId,dateCreated)
     value('$firstName','$lastName','$emailAddress','$sampPass_2','$phoneNo','$classId','$classArmId','$dateCreated')");
 
     if ($query) {
-        
+
         $qu=mysqli_query($conn,"update tblclassarms set isAssigned='1' where Id ='$classArmId'");
             if ($qu) {
-                
+
                 $statusMsg = "<div class='alert alert-success'  style='margin-right:700px;'>Created Successfully!</div>";
             }
             else
@@ -60,41 +60,40 @@ if(isset($_POST['save'])){
 
 //--------------------EDIT------------------------------------------------------------
 
- if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit")
-	{
-        $Id= $_GET['Id'];
+    if (isset($_GET['Id']) && isset($_GET['action']) && $_GET['action'] == "edit")
+    {
+          $Id= $_GET['Id'];
 
-        $query=mysqli_query($conn,"select * from tblclassteacher where Id ='$Id'");
-        $row=mysqli_fetch_array($query);
+          $query=mysqli_query($conn,"select * from tblclassteacher where Id ='$Id'");
+          $row=mysqli_fetch_array($query);
 
-        //------------UPDATE-----------------------------
+          //------------UPDATE-----------------------------
 
-        if(isset($_POST['update'])){
-    
-             $firstName=$_POST['firstName'];
-              $lastName=$_POST['lastName'];
-              $emailAddress=$_POST['emailAddress'];
+          if(isset($_POST['update'])){
+          $firstName=$_POST['firstName'];
+          $middleName=$_POST['middleName'];
+          $lastName=$_POST['lastName'];
+          $emailAddress=$_POST['emailAddress'];
+          $classId=$_POST['classId'];
+          $classProgram=$_POST['classProgram'];
 
-              $phoneNo=$_POST['phoneNo'];
-              $classId=$_POST['classId'];
-              $classArmId=$_POST['classArmId'];
-              $dateCreated = date("Y-m-d");
+          $query=mysqli_query($conn,"update tblclassteacher set firstName = '$firstName', middlename = '$middleName', lastName = '$lastName',
+          emailAddress = '$emailAddress' classId = '$classId', classArmId = '$classProgram where Id='$Id'");
+              if ($query) {
 
-    $query=mysqli_query($conn,"update tblclassteacher set firstName='$firstName', lastName='$lastName',
-    emailAddress='$emailAddress', password='$password',phoneNo='$phoneNo', classId='$classId',classArmId='$classArmId'
-    where Id='$Id'");
-            if ($query) {
-                
-                echo "<script type = \"text/javascript\">
-                window.location = (\"createClassTeacher.php\")
-                </script>"; 
-            }
-            else
-            {
-                $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
-            }
-        }
-    }
+                  echo "<script type = \"text/javascript\">
+                  window.location = (\"createClassTeacher.php\")
+                  </script>";
+              }
+              else
+              {
+                  $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
+              }
+          }
+      }
+
+
+
 
 
 //--------------------------------DELETE------------------------------------------------------------------
@@ -110,10 +109,10 @@ if(isset($_POST['save'])){
 
             $qu=mysqli_query($conn,"update tblclassarms set isAssigned='0' where Id ='$classArmId'");
             if ($qu) {
-                
+
                  echo "<script type = \"text/javascript\">
                 window.location = (\"createClassTeacher.php\")
-                </script>"; 
+                </script>";
             }
             else
             {
@@ -122,9 +121,9 @@ if(isset($_POST['save'])){
         }
         else{
 
-            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>"; 
+            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
          }
-      
+
   }
 
 
@@ -152,7 +151,7 @@ if(isset($_POST['save'])){
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    } else { 
+    } else {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -209,18 +208,17 @@ if(isset($_POST['save'])){
                         <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName">
                         </div>
                         <div class="col-xl-6">
+                        <label class="form-control-label">Middlename<span class="text-danger ml-2">*</span></label>
+                        <input type="text" class="form-control" required name="middleName" value="<?php echo $row['middlename'];?>" id="exampleInputMiddleName">
+                        </div>
+                        <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
                       <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" >
                         </div>
-                    </div>
-                     <div class="form-group row mb-3">
+
                         <div class="col-xl-6">
                         <label class="form-control-label">Email Address<span class="text-danger ml-2">*</span></label>
                         <input type="email" class="form-control" required name="emailAddress" value="<?php echo $row['emailAddress'];?>" id="exampleInputFirstName" >
-                        </div>
-                        <div class="col-xl-6">
-                        <label class="form-control-label">Phone No<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="phoneNo" value="<?php echo $row['phoneNo'];?>" id="exampleInputFirstName" >
                         </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -229,19 +227,18 @@ if(isset($_POST['save'])){
                          <?php
                         $qry= "SELECT * FROM tblclass ORDER BY className ASC";
                         $result = $conn->query($qry);
-                        $num = $result->num_rows;		
+                        $num = $result->num_rows;
                         if ($num > 0){
-                          echo ' <select required name="classId" onchange="classArmDropdown(this.value)" class="form-control mb-3">';
-                          echo'<option value="">--Select Class--</option>';
+                          echo ' <select name="classId" onchange="classArmDropdown(this.value)" class="form-control mb-3">';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['Id'].'" >'.$rows['className'].'</option>';
                               }
                                   echo '</select>';
                               }
-                            ?>  
+                            ?>
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Class Program<span class="text-danger ml-2" name="classProgram">*</span></label>
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -254,11 +251,11 @@ if(isset($_POST['save'])){
                     <button type="submit" name="update" class="btn btn-warning">Update</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <?php
-                    } else {           
+                    } else {
                     ?>
                     <button type="submit" name="save" class="btn btn-primary">Save</button>
                     <?php
-                    }         
+                    }
                     ?>
                   </form>
                 </div>
@@ -277,20 +274,22 @@ if(isset($_POST['save'])){
                       <tr>
                         <th>#</th>
                         <th>First Name</th>
+                        <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Email Address</th>
                         <th>Phone No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Program</th>
                         <th>Date Created</th>
                         <th>Delete</th>
+                        <th>Edit</th>
                       </tr>
                     </thead>
-                   
+
                     <tbody>
 
                   <?php
-                      $query = "SELECT tblclassteacher.Id,tblclass.className,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblclassteacher.firstName,
+                      $query = "SELECT tblclassteacher.Id,tblclass.className,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblclassteacher.firstName,tblclassteacher.middlename,
                       tblclassteacher.lastName,tblclassteacher.emailAddress,tblclassteacher.phoneNo,tblclassteacher.dateCreated
                       FROM tblclassteacher
                       INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
@@ -300,7 +299,7 @@ if(isset($_POST['save'])){
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                              $sn = $sn + 1;
@@ -308,24 +307,26 @@ if(isset($_POST['save'])){
                               <tr>
                                 <td>".$sn."</td>
                                 <td>".$rows['firstName']."</td>
+                                <td>".$rows['middlename']."</td>
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['emailAddress']."</td>
                                 <td>".$rows['phoneNo']."</td>
                                 <td>".$rows['className']."</td>
                                 <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
+
                                 <td><a href='?action=delete&Id=".$rows['Id']."&classArmId=".$rows['classArmId']."'><i class='fas fa-fw fa-trash'></i></a></td>
+                                  <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
                               </tr>";
                           }
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
                       ?>
                     </tbody>
                   </table>
@@ -364,7 +365,7 @@ if(isset($_POST['save'])){
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
+  <!-- <script src="js/ruang-admin.min.js"></script> -->
    <!-- Page level plugins -->
   <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -372,7 +373,7 @@ if(isset($_POST['save'])){
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

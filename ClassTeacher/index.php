@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
 
 
-    $query = "SELECT tblclass.className,tblclassarms.classArmName 
+    $query = "SELECT tblclass.className,tblclassarms.classArmName
     FROM tblclassteacher
     INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
     INNER JOIN tblclassarms ON tblclassarms.Id = tblclassteacher.classArmId
@@ -55,8 +55,8 @@ include '../Includes/session.php';
 
           <div class="row mb-3">
           <!-- New User Card Example -->
-          <?php 
-$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");                       
+          <?php
+$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");
 $students = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -79,8 +79,8 @@ $students = mysqli_num_rows($query1);
               </div>
             </div>
             <!-- Earnings (Monthly) Card Example -->
-             <?php 
-$query1=mysqli_query($conn,"SELECT * from tblclass");                       
+             <?php
+$query1=mysqli_query($conn,"SELECT * from tblclass");
 $class = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -103,8 +103,8 @@ $class = mysqli_num_rows($query1);
               </div>
             </div>
             <!-- Earnings (Annual) Card Example -->
-             <?php 
-$query1=mysqli_query($conn,"SELECT * from tblclassarms");                       
+             <?php
+$query1=mysqli_query($conn,"SELECT * from tblclassarms");
 $classArms = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -112,7 +112,7 @@ $classArms = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Arms</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Programs</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $classArms;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
@@ -126,10 +126,10 @@ $classArms = mysqli_num_rows($query1);
                 </div>
               </div>
             </div>
-            
+
             <!-- Pending Requests Card Example -->
-            <?php 
-$query1=mysqli_query($conn,"SELECT * from tblattendance where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");                       
+            <?php
+$query1=mysqli_query($conn,"SELECT * from tblattendance where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");
 $totAttendance = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -151,7 +151,7 @@ $totAttendance = mysqli_num_rows($query1);
                 </div>
               </div>
             </div>
-          
+
           <!--Row-->
 
           <!-- <div class="row">
@@ -180,7 +180,7 @@ $totAttendance = mysqli_num_rows($query1);
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.min.js"></script>
   <script src="../vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>  
+  <script src="js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>

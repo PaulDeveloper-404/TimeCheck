@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
 
-$query = "SELECT tblclass.className,tblclassarms.classArmName 
+$query = "SELECT tblclass.className,tblclassarms.classArmName
     FROM tblclassteacher
     INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
     INNER JOIN tblclassarms ON tblclassarms.Id = tblclassteacher.classArmId
@@ -38,7 +38,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    } else { 
+    } else {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -101,10 +101,10 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Class Program</th>
                       </tr>
                     </thead>
-                    
+
                     <tbody>
 
                   <?php
@@ -119,7 +119,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                              $sn = $sn + 1;
@@ -137,12 +137,12 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
+
                       ?>
                     </tbody>
                   </table>
@@ -189,7 +189,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
