@@ -230,6 +230,7 @@ if(isset($_POST['save'])){
                         $num = $result->num_rows;
                         if ($num > 0){
                           echo ' <select name="classId" onchange="classArmDropdown(this.value)" class="form-control mb-3">';
+                          echo'<option>Select</option>';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['Id'].'" >'.$rows['className'].'</option>';
                               }
@@ -294,6 +295,7 @@ if(isset($_POST['save'])){
                       FROM tblclassteacher
                       INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblclassteacher.classArmId";
+
                       $rs = $conn->query($query);
                       $num = $rs->num_rows;
                       $sn=0;
@@ -336,17 +338,6 @@ if(isset($_POST['save'])){
             </div>
           </div>
           <!--Row-->
-
-          <!-- Documentation Link -->
-          <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>For more documentations you can visit<a href="https://getbootstrap.com/docs/4.3/components/forms/"
-                  target="_blank">
-                  bootstrap forms documentations.</a> and <a
-                  href="https://getbootstrap.com/docs/4.3/components/input-group/" target="_blank">bootstrap input
-                  groups documentations</a></p>
-            </div>
-          </div> -->
 
         </div>
         <!---Container Fluid-->
