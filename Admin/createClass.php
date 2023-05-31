@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -7,13 +7,13 @@ include '../Includes/session.php';
 //------------------------SAVE--------------------------------------------------
 
 if(isset($_POST['save'])){
-    
+
     $className=$_POST['className'];
-   
+
     $query=mysqli_query($conn,"select * from tblclass where className ='$className'");
     $ret=mysqli_fetch_array($query);
 
-    if($ret > 0){ 
+    if($ret > 0){
 
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Class Already Exists!</div>";
     }
@@ -22,7 +22,7 @@ if(isset($_POST['save'])){
         $query=mysqli_query($conn,"insert into tblclass(className) value('$className')");
 
     if ($query) {
-        
+
         $statusMsg = "<div class='alert alert-success'  style='margin-right:700px;'>Created Successfully!</div>";
     }
     else
@@ -51,16 +51,16 @@ if(isset($_POST['save'])){
         //------------UPDATE-----------------------------
 
         if(isset($_POST['update'])){
-    
+
             $className=$_POST['className'];
-        
+
             $query=mysqli_query($conn,"update tblclass set className='$className' where Id='$Id'");
 
             if ($query) {
-                
+
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createClass.php\")
-                </script>"; 
+                </script>";
             }
             else
             {
@@ -82,13 +82,13 @@ if(isset($_POST['save'])){
 
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createClass.php\")
-                </script>";  
+                </script>";
         }
         else{
 
-            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>"; 
+            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
          }
-      
+
   }
 
 
@@ -154,11 +154,11 @@ if(isset($_POST['save'])){
                     <button type="submit" name="update" class="btn btn-warning">Update</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <?php
-                    } else {           
+                    } else {
                     ?>
                     <button type="submit" name="save" class="btn btn-primary">Save</button>
                     <?php
-                    }         
+                    }
                     ?>
                   </form>
                 </div>
@@ -181,7 +181,7 @@ if(isset($_POST['save'])){
                         <th>Delete</th>
                       </tr>
                     </thead>
-                  
+
                     <tbody>
 
                   <?php
@@ -190,7 +190,7 @@ if(isset($_POST['save'])){
                       $num = $rs->num_rows;
                       $sn=0;
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                              $sn = $sn + 1;
@@ -199,18 +199,22 @@ if(isset($_POST['save'])){
                                 <td>".$sn."</td>
                                 <td>".$rows['className']."</td>
                                 <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i>Edit</a></td>
-                                <td><a href='?action=delete&Id=".$rows['Id']."'><i class='fas fa-fw fa-trash'></i>Delete</a></td>
+                                <td>
+                                <a href='?action=delete&Id=".$rows['Id']."' onclick='return confirmDelete()'>
+                                  <i class='fas fa-fw fa-trash'></i>
+                                </a>
+                              </td>
                               </tr>";
                           }
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
+
                       ?>
                     </tbody>
                   </table>
@@ -245,7 +249,11 @@ if(isset($_POST['save'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+  }
+</script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -257,7 +265,7 @@ if(isset($_POST['save'])){
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

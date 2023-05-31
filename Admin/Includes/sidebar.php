@@ -35,7 +35,7 @@
          </a>
          <div id="collapseBootstrapusers" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Manage Class Arms</h6>
+                 <h6 class="collapse-header">Manage Class Programs</h6>
                  <a class="collapse-item" href="createClassArms.php">Create Class Programs</a>
                  <!-- <a class="collapse-item" href="usersList.php">User List</a> -->
              </div>
@@ -95,18 +95,18 @@
 
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
-         Session & Term
+         Semesters
      </div>
      </li>
      <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapcon" aria-expanded="true" aria-controls="collapseBootstrapcon">
              <i class="fa fa-calendar-alt"></i>
-             <span>Manage Session & Term</span>
+             <span>Manage Semester</span>
          </a>
          <div id="collapseBootstrapcon" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Contribution</h6>
-                 <a class="collapse-item" href="createSessionTerm.php">Create Session and Term</a>
+                 <a class="collapse-item" href="createSessionTerm.php">Add Semesters</a>
                  <!-- <a class="collapse-item" href="addMemberToContLevel.php ">Add Member to Level</a> -->
              </div>
          </div>

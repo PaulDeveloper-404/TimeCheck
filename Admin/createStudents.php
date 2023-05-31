@@ -8,9 +8,10 @@ include '../Includes/session.php';
 
 if(isset($_POST['save'])){
 
-    $firstName=$_POST['firstName'];
+  $firstName=$_POST['firstName'];
   $lastName=$_POST['lastName'];
   $otherName=$_POST['otherName'];
+  $middleName=$_POST['middleName'];
 
   $admissionNumber=$_POST['admissionNumber'];
   $classId=$_POST['classId'];
@@ -26,8 +27,8 @@ if(isset($_POST['save'])){
     }
     else{
 
-    $query=mysqli_query($conn,"insert into tblstudents(firstName,lastName,otherName,admissionNumber,password,classId,classArmId,dateCreated)
-    value('$firstName','$lastName','$otherName','$admissionNumber','12345','$classId','$classArmId','$dateCreated')");
+    $query=mysqli_query($conn,"insert into tblstudents(firstName,lastName,middleName,otherName,admissionNumber,password,classId,classArmId,dateCreated)
+    value('$firstName','$lastName','$middleName','$otherName','$admissionNumber','12345','$classId','$classArmId','$dateCreated')");
 
     if ($query) {
 
@@ -64,14 +65,14 @@ if(isset($_POST['save'])){
   $firstName=$_POST['firstName'];
   $lastName=$_POST['lastName'];
   $otherName=$_POST['otherName'];
-  $MiddleName=$_POST['MiddleName'];
+  $middleName=$_POST['middleName'];
 
   $admissionNumber=$_POST['admissionNumber'];
   $classId=$_POST['classId'];
   $classArmId=$_POST['classArmId'];
   $dateCreated = date("Y-m-d");
 
- $query=mysqli_query($conn,"update tblstudents set firstName='$firstName', lastName='$lastName',  middlename =' $MiddleName',
+ $query=mysqli_query($conn,"update tblstudents set firstName='$firstName', lastName='$lastName',  middlename =' $middleName',
     otherName='$otherName', admissionNumber='$admissionNumber',password='12345', classId='$classId',classArmId='$classArmId'
     where Id='$Id'");
             if ($query) {
@@ -124,6 +125,8 @@ if(isset($_POST['save'])){
   <meta name="author" content="">
   <link href="img/logo/attnlg.jpg" rel="icon">
 <?php include 'includes/title.php';?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -193,8 +196,8 @@ if(isset($_POST['save'])){
                         </div>
 
                         <div class="col-xl-6">
-                        <label class="form-control-label">Middlename<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" name="MiddleName" value="<?php echo $row['middlename'];?>" id="exampleInputMiddleName" >
+                        <label class="form-control-label">Middlename<span class="text-danger ml-2">(Optional)</span></label>
+                        <input type="text" class="form-control" name="middleName" value="<?php echo $row['middlename'];?>" id="exampleInputMiddleName" >
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
@@ -203,11 +206,11 @@ if(isset($_POST['save'])){
 
 
                         <div class="col-xl-6">
-                        <label class="form-control-label">Other Name<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Student No<span class="text-danger ml-2">*</span></label>
                         <input type="text" class="form-control" name="otherName" value="<?php echo $row['otherName'];?>" id="exampleInputFirstName" >
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Admission Number<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Class Code<span class="text-danger ml-2">*</span></label>
                       <input type="text" class="form-control" required name="admissionNumber" value="<?php echo $row['admissionNumber'];?>" id="exampleInputFirstName" >
                         </div>
 
@@ -267,8 +270,8 @@ if(isset($_POST['save'])){
                         <th>First Name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Other Name</th>
-                        <th>Admission No</th>
+                        <th>Student No</th>
+                        <th>Class Code</th>
                         <th>Class</th>
                         <th>Class Program</th>
                         <th>Date Created</th>
@@ -305,18 +308,35 @@ if(isset($_POST['save'])){
                                 <td>".$rows['className']."</td>
                                 <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
-                                <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
-                                <td><a href='?action=delete&Id=".$rows['Id']."'><i class='fas fa-fw fa-trash'></i></a></td>
+
+                                <td>
+                                <a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a>
+                                </td>
+
+
+                                <td>
+                                <a href='?action=delete&Id=".$rows['Id']."' onclick='return confirmDelete()'>
+                                  <i class='fas fa-fw fa-trash'></i>
+                                </a>
+                              </td>
+
+
+
+
                               </tr>";
+
                           }
-                      }
+                        }
+
                       else
                       {
+
                            echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
+
 
                       ?>
                     </tbody>
@@ -327,16 +347,7 @@ if(isset($_POST['save'])){
             </div>
           </div>
 
-          <!-- Documentation Link -->
-          <!-- <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>For more documentations you can visit<a href="https://getbootstrap.com/docs/4.3/components/forms/"
-                  target="_blank">
-                  bootstrap forms documentations.</a> and <a
-                  href="https://getbootstrap.com/docs/4.3/components/input-group/" target="_blank">bootstrap input
-                  groups documentations</a></p>
-            </div>
-          </div> -->
+
 
         </div>
         <!---Container Fluid-->
@@ -351,7 +362,11 @@ if(isset($_POST['save'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+  }
+</script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

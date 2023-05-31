@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -7,15 +7,15 @@ include '../Includes/session.php';
 //------------------------SAVE--------------------------------------------------
 
 if(isset($_POST['save'])){
-    
+
     $sessionName=$_POST['sessionName'];
     $termId=$_POST['termId'];
     $dateCreated = date("Y-m-d");
-   
+
     $query=mysqli_query($conn,"select * from tblsessionterm where sessionName ='$sessionName' and termId = '$termId'");
     $ret=mysqli_fetch_array($query);
 
-    if($ret > 0){ 
+    if($ret > 0){
 
         $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Session and Term Already Exists!</div>";
     }
@@ -24,7 +24,7 @@ if(isset($_POST['save'])){
         $query=mysqli_query($conn,"insert into tblsessionterm(sessionName,termId,isActive,dateCreated) value('$sessionName','$termId','0','$dateCreated')");
 
     if ($query) {
-        
+
         $statusMsg = "<div class='alert alert-success'  style='margin-right:700px;'>Created Successfully!</div>";
     }
     else
@@ -53,18 +53,18 @@ if(isset($_POST['save'])){
         //------------UPDATE-----------------------------
 
         if(isset($_POST['update'])){
-    
+
              $sessionName=$_POST['sessionName'];
     $termId=$_POST['termId'];
     $dateCreated = date("Y-m-d");
-        
+
             $query=mysqli_query($conn,"update tblsessionterm set sessionName='$sessionName',termId='$termId',isActive='0' where Id='$Id'");
 
             if ($query) {
-                
+
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createSessionTerm.php\")
-                </script>"; 
+                </script>";
             }
             else
             {
@@ -86,13 +86,13 @@ if(isset($_POST['save'])){
 
                 echo "<script type = \"text/javascript\">
                 window.location = (\"createSessionTerm.php\")
-                </script>";  
+                </script>";
         }
         else{
 
-            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>"; 
+            $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
          }
-      
+
   }
 
 
@@ -105,14 +105,14 @@ if(isset($_POST['save'])){
         $query=mysqli_query($conn,"update tblsessionterm set isActive='0' where isActive='1'");
 
             if ($query) {
-                
+
                 $que=mysqli_query($conn,"update tblsessionterm set isActive='1' where Id='$Id'");
 
                 if ($que) {
-                    
+
                     echo "<script type = \"text/javascript\">
                     window.location = (\"createSessionTerm.php\")
-                    </script>";  
+                    </script>";
                 }
                 else
                 {
@@ -123,7 +123,7 @@ if(isset($_POST['save'])){
             {
                 $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
             }
-      
+
   }
 
 
@@ -159,10 +159,10 @@ if(isset($_POST['save'])){
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Create Session and Term</h1>
+            <h1 class="h3 mb-0 text-gray-800">Academic Quarter</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create Session and Term<</li>
+              <li class="breadcrumb-item active" aria-current="page">Add Semester<</li>
             </ol>
           </div>
 
@@ -171,7 +171,7 @@ if(isset($_POST['save'])){
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Create Session and Term</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Academic Quarter</h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
@@ -186,16 +186,16 @@ if(isset($_POST['save'])){
                               <?php
                         $qry= "SELECT * FROM tblterm ORDER BY termName ASC";
                         $result = $conn->query($qry);
-                        $num = $result->num_rows;		
+                        $num = $result->num_rows;
                         if ($num > 0){
                           echo ' <select required name="termId" class="form-control mb-3">';
-                          echo'<option value="">--Select Tern--</option>';
+                          echo'<option value="">--Select Term--</option>';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['Id'].'" >'.$rows['termName'].'</option>';
                               }
                                   echo '</select>';
                               }
-                            ?>  
+                            ?>
                         </div>
                     </div>
                       <?php
@@ -205,11 +205,11 @@ if(isset($_POST['save'])){
                     <button type="submit" name="update" class="btn btn-warning">Update</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <?php
-                    } else {           
+                    } else {
                     ?>
                     <button type="submit" name="save" class="btn btn-primary">Save</button>
                     <?php
-                    }         
+                    }
                     ?>
                   </form>
                 </div>
@@ -220,7 +220,7 @@ if(isset($_POST['save'])){
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">All Session and Term</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">All Semesters</h6>
                   <h6 class="m-0 font-weight-bold text-danger">Note: <i>Click on the check symbol besides each to make session and term active!</i></h6>
                 </div>
                 <div class="table-responsive p-3">
@@ -228,7 +228,7 @@ if(isset($_POST['save'])){
                     <thead class="thead-light">
                       <tr>
                         <th>#</th>
-                        <th>Session</th>
+                        <th>School Year</th>
                         <th>Term</th>
                         <th>Status</th>
                         <th>Date</th>
@@ -237,7 +237,7 @@ if(isset($_POST['save'])){
                         <th>Delete</th>
                       </tr>
                     </thead>
-                  
+
                     <tbody>
 
                   <?php
@@ -249,7 +249,7 @@ if(isset($_POST['save'])){
                       $num = $rs->num_rows;
                       $sn=0;
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                             if($rows['isActive'] == '1'){$status = "Active";}else{$status = "InActive";}
@@ -261,20 +261,27 @@ if(isset($_POST['save'])){
                                 <td>".$rows['termName']."</td>
                                 <td>".$status."</td>
                                 <td>".$rows['dateCreated']."</td>
+
+
+
                                  <td><a href='?action=activate&Id=".$rows['Id']."'><i class='fas fa-fw fa-check'></i></a></td>
                                 <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
-                                <td><a href='?action=delete&Id=".$rows['Id']."'><i class='fas fa-fw fa-trash'></i></a></td>
+                                <td>
+                                <a href='?action=delete&Id=".$rows['Id']."' onclick='return confirmDelete()'>
+                                  <i class='fas fa-fw fa-trash'></i>
+                                </a>
+                              </td>
                               </tr>";
                           }
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
+
                       ?>
                     </tbody>
                   </table>
@@ -309,7 +316,11 @@ if(isset($_POST['save'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+ <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+  }
+</script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -321,7 +332,7 @@ if(isset($_POST['save'])){
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

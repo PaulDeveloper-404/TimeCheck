@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 
@@ -6,6 +6,7 @@ include '../Includes/dbcon.php';
     if(isset($_POST['submit'])){
 
         $firstName = $_POST['firstName'];
+        $middleName = $_POST['middleName'];
         $lastName = $_POST['lastName'];
         $email = $_POST['email'];
         $phoneNo = $_POST['phoneNo'];
@@ -37,7 +38,7 @@ include '../Includes/dbcon.php';
             window.location = (\"../memberSetup.php\")
             </script>";
         }
-        
+
         else if($num > 0)
         {
             echo "<script type = \"text/javascript\">
@@ -48,7 +49,7 @@ include '../Includes/dbcon.php';
         }
         else
         {
-            
+
             if($_POST['userType'] == 1) // if the userType is staff, save staff info and user info
             {
                 $companyId = $_POST['companyId'];
@@ -58,7 +59,7 @@ include '../Includes/dbcon.php';
                 $department = $_POST['department'];
                 $description = $_POST['description'];
 
-                $userqr = "INSERT INTO users (roleId,coopId,firstName,lastName,gender,dob,city,state,lga,emailAddress,address,phoneNo,password,dateCreated) 
+                $userqr = "INSERT INTO users (roleId,coopId,firstName,lastName,gender,dob,city,state,lga,emailAddress,address,phoneNo,password,dateCreated)
                         VALUES ('2','$coopAccountId','$firstName','$lastName','$gender','$dob','$city','$state','$lga','$email','$address','$phoneNo','$password','$dateCreated')";
                 $useres = $conn->query($userqr);
 
@@ -76,13 +77,13 @@ include '../Includes/dbcon.php';
                         $rrw = $rslt->fetch_assoc();
                         $memberId = $rrw['Id'];
 
-                        $compqr = "INSERT INTO companystaff (staffCode,memberId,compId,coopId,position,level,department,jobDescription,dateCreated) 
+                        $compqr = "INSERT INTO companystaff (staffCode,memberId,compId,coopId,position,level,department,jobDescription,dateCreated)
                             VALUES ('$staffCode','$memberId','$companyId','$coopAccountId','$position','$level','$department','$description','$dateCreated')";
                         $compres = $conn->query($compqr);
 
                             if($compres === TRUE)
                             {
-                                
+
                             }
                             else
                             {
@@ -117,13 +118,13 @@ include '../Includes/dbcon.php';
 
             else if($_POST['userType'] == 2) // if the userType is ExternalMmber, save the member info to the user table only
             {
-                $userqr = "INSERT INTO users (roleId,coopId,firstName,lastName,gender,dob,city,state,lga,emailAddress,address,phoneNo,password,dateCreated) 
+                $userqr = "INSERT INTO users (roleId,coopId,firstName,lastName,gender,dob,city,state,lga,emailAddress,address,phoneNo,password,dateCreated)
                         VALUES ('2','$coopAccountId','$firstName','$lastName','$gender','$dob','$city','$state','$lga','$email','$address','$phoneNo','$password','$dateCreated')";
                 $useres = $conn->query($userqr);
 
                 if($useres === TRUE)
                 {
-                    
+
                 }
                 else
                 {
@@ -139,7 +140,7 @@ include '../Includes/dbcon.php';
             }
 
         } // end of else statement
-        
+
     } //end of if for submit button
 
 

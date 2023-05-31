@@ -11,6 +11,7 @@ if(isset($_POST['save'])){
   $firstName=$_POST['firstName'];
   $lastName=$_POST['lastName'];
   $emailAddress=$_POST['emailAddress'];
+  $middleName=$_POST['middleName'];
 
   $phoneNo=$_POST['phoneNo'];
   $classId=$_POST['classId'];
@@ -29,8 +30,8 @@ if(isset($_POST['save'])){
     }
     else{
 
-    $query=mysqli_query($conn,"INSERT into tblclassteacher(firstName,lastName,emailAddress,password,phoneNo,classId,classArmId,dateCreated)
-    value('$firstName','$lastName','$emailAddress','$sampPass_2','$phoneNo','$classId','$classArmId','$dateCreated')");
+    $query=mysqli_query($conn,"INSERT into tblclassteacher(firstName,lastName,middleName,emailAddress,password,phoneNo,classId,classArmId,dateCreated)
+    value('$firstName','$lastName','$middleName','$emailAddress','$sampPass_2','$phoneNo','$classId','$classArmId','$dateCreated')");
 
     if ($query) {
 
@@ -70,15 +71,18 @@ if(isset($_POST['save'])){
           //------------UPDATE-----------------------------
 
           if(isset($_POST['update'])){
+
           $firstName=$_POST['firstName'];
           $middleName=$_POST['middleName'];
           $lastName=$_POST['lastName'];
           $emailAddress=$_POST['emailAddress'];
           $classId=$_POST['classId'];
-          $classProgram=$_POST['classProgram'];
+          $classArmId=$_POST['classArmId'];
 
-          $query=mysqli_query($conn,"update tblclassteacher set firstName = '$firstName', middlename = '$middleName', lastName = '$lastName',
-          emailAddress = '$emailAddress' classId = '$classId', classArmId = '$classProgram where Id='$Id'");
+          $query=mysqli_query($conn,"update tblclassteacher set firstName = '$firstName',lastName = '$lastName',middlename = '$middleName',
+          emailAddress = '$emailAddress', classId = '$classId', classArmId = '$classArmId'
+          where Id='$Id'");
+
               if ($query) {
 
                   echo "<script type = \"text/javascript\">
@@ -317,8 +321,14 @@ if(isset($_POST['save'])){
                                 <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
 
-                                <td><a href='?action=delete&Id=".$rows['Id']."&classArmId=".$rows['classArmId']."'><i class='fas fa-fw fa-trash'></i></a></td>
-                                  <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
+                                <td>
+                                <a href='?action=delete&Id=".$rows['Id']."&classArmId=".$rows['classArmId']."' onclick='return confirmDelete()'>
+                                  <i class='fas fa-fw fa-trash'></i>
+                                </a>
+                              </td>
+
+                                  <td>
+                                  <a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
                               </tr>";
                           }
                       }
@@ -352,7 +362,11 @@ if(isset($_POST['save'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+  }
+</script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

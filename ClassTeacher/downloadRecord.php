@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -13,19 +13,19 @@ include '../Includes/session.php';
             <th>Other Name</th>
             <th>Admission No</th>
             <th>Class</th>
-            <th>Class Arm</th>
-            <th>Session</th>
+            <th>Class Program</th>
+            <th>Semester</th>
             <th>Term</th>
             <th>Status</th>
             <th>Date</th>
             </tr>
         </thead>
 
-<?php 
+<?php
 $filename="Attendance list";
 $dateTaken = date("Y-m-d");
 
-$cnt=1;			
+$cnt=1;
 $ret = mysqli_query($conn,"SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
         tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
@@ -39,25 +39,25 @@ $ret = mysqli_query($conn,"SELECT tblattendance.Id,tblattendance.status,tblatten
 
 if(mysqli_num_rows($ret) > 0 )
 {
-while ($row=mysqli_fetch_array($ret)) 
-{ 
-    
+while ($row=mysqli_fetch_array($ret))
+{
+
     if($row['status'] == '1'){$status = "Present"; $colour="#00FF00";}else{$status = "Absent";$colour="#FF0000";}
 
-echo '  
-<tr>  
-<td>'.$cnt.'</td> 
-<td>'.$firstName= $row['firstName'].'</td> 
-<td>'.$lastName= $row['lastName'].'</td> 
-<td>'.$otherName= $row['otherName'].'</td> 
-<td>'.$admissionNumber= $row['admissionNumber'].'</td> 
-<td>'.$className= $row['className'].'</td> 
-<td>'.$classArmName=$row['classArmName'].'</td>	
-<td>'.$sessionName=$row['sessionName'].'</td>	 
-<td>'.$termName=$row['termName'].'</td>	
-<td>'.$status=$status.'</td>	 	
-<td>'.$dateTimeTaken=$row['dateTimeTaken'].'</td>	 					
-</tr>  
+echo '
+<tr>
+<td>'.$cnt.'</td>
+<td>'.$firstName= $row['firstName'].'</td>
+<td>'.$lastName= $row['lastName'].'</td>
+<td>'.$otherName= $row['otherName'].'</td>
+<td>'.$admissionNumber= $row['admissionNumber'].'</td>
+<td>'.$className= $row['className'].'</td>
+<td>'.$classArmName=$row['classArmName'].'</td>
+<td>'.$sessionName=$row['sessionName'].'</td>
+<td>'.$termName=$row['termName'].'</td>
+<td>'.$status=$status.'</td>
+<td>'.$dateTimeTaken=$row['dateTimeTaken'].'</td>
+</tr>
 ';
 header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=".$filename."-report.xls");

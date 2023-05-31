@@ -225,7 +225,11 @@ if(isset($_POST['save'])){
                                 <td>".$rows['classArmName']."</td>
                                 <td>".$status."</td>
                                 <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i>Edit</a></td>
-                                <td><a href='?action=delete&Id=".$rows['Id']."'><i class='fas fa-fw fa-trash'></i>Delete</a></td>
+                                <td>
+                                <a href='?action=delete&Id=".$rows['Id']."' onclick='return confirmDelete()'>
+                                  <i class='fas fa-fw fa-trash'></i>
+                                </a>
+                              </td>
                               </tr>";
                           }
                       }
@@ -271,7 +275,11 @@ if(isset($_POST['save'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  <script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this item?");
+  }
+</script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
