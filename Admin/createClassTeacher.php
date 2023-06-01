@@ -234,7 +234,7 @@ if(isset($_POST['save'])){
                         $num = $result->num_rows;
                         if ($num > 0){
                           echo ' <select name="classId" onchange="classArmDropdown(this.value)" class="form-control mb-3">';
-                          echo'<option>Select</option>';
+                          echo'<option>--Select Class--</option>';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['Id'].'" >'.$rows['className'].'</option>';
                               }
@@ -243,7 +243,8 @@ if(isset($_POST['save'])){
                             ?>
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Program<span class="text-danger ml-2" name="classProgram">*</span></label>
+                        <label class="form-control-label">Class Program<span class="text-danger ml-2" name="classProgram">*</span>
+                      </label>
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -282,7 +283,7 @@ if(isset($_POST['save'])){
                         <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Email Address</th>
-                        <th>Phone No</th>
+                        <!-- <th>Phone No</th> -->
                         <th>Class</th>
                         <th>Class Program</th>
                         <th>Date Created</th>
@@ -295,7 +296,7 @@ if(isset($_POST['save'])){
 
                   <?php
                       $query = "SELECT tblclassteacher.Id,tblclass.className,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblclassteacher.firstName,tblclassteacher.middlename,
-                      tblclassteacher.lastName,tblclassteacher.emailAddress,tblclassteacher.phoneNo,tblclassteacher.dateCreated
+                      tblclassteacher.lastName,tblclassteacher.emailAddress,tblclassteacher.dateCreated
                       FROM tblclassteacher
                       INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblclassteacher.classArmId";
@@ -316,7 +317,7 @@ if(isset($_POST['save'])){
                                 <td>".$rows['middlename']."</td>
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['emailAddress']."</td>
-                                <td>".$rows['phoneNo']."</td>
+
                                 <td>".$rows['className']."</td>
                                 <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
@@ -338,6 +339,15 @@ if(isset($_POST['save'])){
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
+
+                            if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['Id'])) {
+                              $id = $_GET['Id'];
+
+                              // Code to connect to the database and perform the delete operation based on the $id
+                              // ...
+                              // After successfully deleting the data, you can redirect the user to another page or display a success message.
+                              // ...
+                            }
                       }
                       ?>
                     </tbody>

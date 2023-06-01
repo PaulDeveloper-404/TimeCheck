@@ -239,6 +239,15 @@ if(isset($_POST['save'])){
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
+
+                            if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['Id'])) {
+                              $id = $_GET['Id'];
+
+                              // Code to connect to the database and perform the delete operation based on the $id
+                              // ...
+                              // After successfully deleting the data, you can redirect the user to another page or display a success message.
+                              // ...
+                            }
                       }
 
                       ?>

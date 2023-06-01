@@ -178,8 +178,8 @@ if(isset($_POST['save'])){
                   <form method="post">
                     <div class="form-group row mb-3">
                         <div class="col-xl-6">
-                            <label class="form-control-label">Session Name<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="sessionName" value="<?php echo $row['sessionName'];?>" id="exampleInputFirstName" placeholder="Session">
+                            <label class="form-control-label">School Year<span class="text-danger ml-2">*</span></label>
+                      <input type="text" class="form-control" name="sessionName" value="<?php echo $row['sessionName'];?>" id="exampleInputFirstName" placeholder="School Year">
                         </div>
                         <div class="col-xl-6">
                             <label class="form-control-label">Term<span class="text-danger ml-2">*</span></label>
@@ -221,7 +221,7 @@ if(isset($_POST['save'])){
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">All Semesters</h6>
-                  <h6 class="m-0 font-weight-bold text-danger">Note: <i>Click on the check symbol besides each to make session and term active!</i></h6>
+                  <h6 class="m-0 font-weight-bold text-danger">Note: <i>Click on the check symbol besides each to make Quarter active!</i></h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -229,7 +229,7 @@ if(isset($_POST['save'])){
                       <tr>
                         <th>#</th>
                         <th>School Year</th>
-                        <th>Term</th>
+                        <th>Quarter</th>
                         <th>Status</th>
                         <th>Date</th>
                         <th>Activate</th>
@@ -280,6 +280,15 @@ if(isset($_POST['save'])){
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
+
+                            if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['Id'])) {
+                              $id = $_GET['Id'];
+
+                              // Code to connect to the database and perform the delete operation based on the $id
+                              // ...
+                              // After successfully deleting the data, you can redirect the user to another page or display a success message.
+                              // ...
+                            }
                       }
 
                       ?>
