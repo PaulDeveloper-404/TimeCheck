@@ -22,11 +22,11 @@ if(isset($_POST['save'])){
     $query=mysqli_query($conn,"select * from tblstudents where admissionNumber ='$admissionNumber'");
     $ret=mysqli_fetch_array($query);
 
-    if($ret > 0){
+    // if($ret > 0){
 
-        $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Email Address Already Exists!</div>";
-    }
-    else{
+    //     $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>This Email Address Already Exists!</div>";
+    // }
+    // else{
 
     $query=mysqli_query($conn,"insert into tblstudents(firstName,lastName,middleName,extName,otherName,admissionNumber,password,classId,classArmId,dateCreated)
     value('$firstName','$lastName','$middleName','$extName','$otherName','$admissionNumber','12345','$classId','$classArmId','$dateCreated')");
@@ -41,7 +41,7 @@ if(isset($_POST['save'])){
          $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
     }
   }
-}
+
 
 //---------------------------------------EDIT-------------------------------------------------------------
 
@@ -194,7 +194,7 @@ if(isset($_POST['save'])){
                    <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Firstname<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" required >
+                        <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" required >
                         </div>
 
                         <div class="col-xl-6">
@@ -203,7 +203,7 @@ if(isset($_POST['save'])){
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" required>
+                      <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" required>
                         </div>
 
                         <div class="col-xl-6">
@@ -222,11 +222,11 @@ if(isset($_POST['save'])){
 
                         <div class="col-xl-6">
                         <label class="form-control-label">Student No<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" name="otherName" value="<?php echo $row['otherName'];?>" id="exampleInputFirstName" required>
+                        <input type="text" class="form-control" required name="otherName" value="<?php echo $row['otherName'];?>" id="exampleInputFirstName" >
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Class Code<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" required name="admissionNumber" value="<?php echo $row['admissionNumber'];?>" id="exampleInputFirstName" required>
+                      <input type="text" class="form-control" required name="admissionNumber" value="<?php echo $row['admissionNumber'];?>" id="exampleInputFirstName" >
                         </div>
 
 

@@ -211,15 +211,15 @@ if(isset($_POST['save'])){
                    <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Firstname<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" required>
+                        <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" >
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Middlename<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" required name="middleName" value="<?php echo $row['middlename'];?>" id="exampleInputMiddleName">
+                        <input type="text" class="form-control"  name="middleName" value="<?php echo $row['middlename'];?>" id="exampleInputMiddleName">
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" required>
+                      <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" >
                         </div>
                          <div class="col-xl-6">
     <label class="form-control-label">Suffix<span class="text-danger ml-2">(Optional)</span></label>
