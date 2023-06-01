@@ -194,7 +194,7 @@ if(isset($_POST['save'])){
                    <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Firstname<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" >
+                        <input type="text" class="form-control" name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" required >
                         </div>
 
                         <div class="col-xl-6">
@@ -203,13 +203,14 @@ if(isset($_POST['save'])){
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" >
+                      <input type="text" class="form-control" name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" required>
                         </div>
 
                         <div class="col-xl-6">
     <label class="form-control-label">Suffix<span class="text-danger ml-2">(Optional)</span></label>
-    <select class="form-control" name="extName" id="exampleExtName" required>
+    <select class="form-control" name="extName" id="exampleExtName">
         <option value="">--Select Suffix Name--</option>
+        <option value="None"<?php if ($row['suffix'] === 'None') echo ' selected'; ?>>None</option>
         <option value="Jr"<?php if ($row['suffix'] === 'Jr') echo ' selected'; ?>>Jr.</option>
         <option value="Sr"<?php if ($row['suffix'] === 'Sr') echo ' selected'; ?>>Sr.</option>
         <option value="II"<?php if ($row['suffix'] === 'II') echo ' selected'; ?>>II.</option>
@@ -221,11 +222,11 @@ if(isset($_POST['save'])){
 
                         <div class="col-xl-6">
                         <label class="form-control-label">Student No<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" name="otherName" value="<?php echo $row['otherName'];?>" id="exampleInputFirstName" >
+                        <input type="text" class="form-control" name="otherName" value="<?php echo $row['otherName'];?>" id="exampleInputFirstName" required>
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Class Code<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" required name="admissionNumber" value="<?php echo $row['admissionNumber'];?>" id="exampleInputFirstName" >
+                      <input type="text" class="form-control" required name="admissionNumber" value="<?php echo $row['admissionNumber'];?>" id="exampleInputFirstName" required>
                         </div>
 
 

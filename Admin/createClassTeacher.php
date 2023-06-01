@@ -211,7 +211,7 @@ if(isset($_POST['save'])){
                    <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Firstname<span class="text-danger ml-2">*</span></label>
-                        <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName">
+                        <input type="text" class="form-control" required name="firstName" value="<?php echo $row['firstName'];?>" id="exampleInputFirstName" required>
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Middlename<span class="text-danger ml-2">*</span></label>
@@ -219,11 +219,11 @@ if(isset($_POST['save'])){
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Lastname<span class="text-danger ml-2">*</span></label>
-                      <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" >
+                      <input type="text" class="form-control" required name="lastName" value="<?php echo $row['lastName'];?>" id="exampleInputFirstName" required>
                         </div>
                          <div class="col-xl-6">
     <label class="form-control-label">Suffix<span class="text-danger ml-2">(Optional)</span></label>
-    <select class="form-control" name="extName" id="exampleExtName" required>
+    <select class="form-control" name="extName" id="exampleExtName">
         <option value="">--Select Suffix Name--</option>
         <option value="Jr"<?php if ($row['suffix'] === 'Jr') echo ' selected'; ?>>Jr.</option>
         <option value="Sr"<?php if ($row['suffix'] === 'Sr') echo ' selected'; ?>>Sr.</option>
@@ -235,7 +235,7 @@ if(isset($_POST['save'])){
 
                         <div class="col-xl-6">
                         <label class="form-control-label">Email Address<span class="text-danger ml-2">*</span></label>
-                        <input type="email" class="form-control" required name="emailAddress" value="<?php echo $row['emailAddress'];?>" id="exampleInputFirstName" >
+                        <input type="email" class="form-control" required name="emailAddress" value="<?php echo $row['emailAddress'];?>" id="exampleInputFirstName" required >
                         </div>
                     </div>
                     <div class="form-group row mb-3">
