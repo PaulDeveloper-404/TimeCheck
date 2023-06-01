@@ -66,7 +66,7 @@ session_start();
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-success btn-block" value="Login" name="login" />
                                         </div>
-                                            <a href="signup.php" class="btn btn-success btn-block">Signup</a>
+                                            <!-- <a href="signup.php" class="btn btn-success btn-block">Signup</a> -->
                                     </form>
                                     </div >
                                     <?php

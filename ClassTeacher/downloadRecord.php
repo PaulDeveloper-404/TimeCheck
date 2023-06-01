@@ -2,6 +2,9 @@
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
+// header('Content-Type: application/vnd.ms-excel');
+// header('Content-Disposition: attachment; filename="example.xls"');
+
 
 ?>
         <table border="1">
@@ -14,6 +17,7 @@ include '../Includes/session.php';
                         <th>Ext Name</th>
                         <th>Student No</th>
                         <th>Class Code</th>
+                        <th>Class Name</th>
                         <th>Class Program</th>
                         <th>Quarter</th>
                         <th>Term</th>
@@ -27,7 +31,7 @@ $filename="Attendance list";
 $dateTaken = date("Y-m-d");
 
 $cnt=1;
-$ret = mysqli_query($conn,"SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
+$ret = mysqli_query($conn,"SELECT  tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
         tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
         FROM tblattendance

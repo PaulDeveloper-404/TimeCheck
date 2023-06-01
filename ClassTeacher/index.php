@@ -3,6 +3,8 @@
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
 
+// header('Content-Type: application/xls');
+// header('Content-Disposition: attachment; filename="file.xls"');
 
     $query = "SELECT tblclass.className,tblclassarms.classArmName
     FROM tblclassteacher

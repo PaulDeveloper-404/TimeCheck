@@ -142,6 +142,7 @@ include '../Includes/session.php';
                         <th>Last Name</th>
                         <th>Ext Name</th>
                         <th>Student No</th>
+                        <th>Class Code</th>
                         <th>Class Name</th>
                         <th>Class Program</th>
                         <th>Quarter</th>
@@ -213,6 +214,8 @@ include '../Includes/session.php';
                       $num = $rs->num_rows;
                       $sn=0;
                       $status="";
+
+                      
                       if($num > 0)
                       {
                         while ($rows = $rs->fetch_assoc())
@@ -223,7 +226,9 @@ include '../Includes/session.php';
                               <tr>
                                 <td>".$sn."</td>
                                  <td>".$rows['firstName']."</td>
+                                 <td>".$rows['middleName']."</td>
                                 <td>".$rows['lastName']."</td>
+                                <td>".$rows['extName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
                                 <td>".$rows['className']."</td>

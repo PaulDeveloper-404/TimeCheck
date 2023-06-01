@@ -87,6 +87,7 @@ include '../Includes/session.php';
                         <th>Last Name</th>
                         <th>Ext Name</th>
                         <th>Student No</th>
+                        <th>Class Code</th>
                         <th>Class Name</th>
                         <th>Class Program</th>
                         <th>Quarter</th>
@@ -123,7 +124,8 @@ include '../Includes/session.php';
                       INNER JOIN tblsessionterm ON tblsessionterm.Id = tblattendance.sessionTermId
                       INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                       INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
-                      where tblattendance.dateTimeTaken = '$dateTaken' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
+                      where tblattendance.dateTimeTaken = '$dateTaken' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'
+                      ";
                       $rs = $conn->query($query);
                       $num = $rs->num_rows;
                       $sn=0;

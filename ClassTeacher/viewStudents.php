@@ -95,12 +95,14 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>#</th>
+                      <th>#</th>
                         <th>First Name</th>
+                        <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Other Name</th>
-                        <th>Admission No</th>
-                        <th>Class</th>
+                        <th>Ext Name</th>
+                        <th>Student No</th>
+                        <th>Class Code</th>
+                        <th>Class Name</th>
                         <th>Class Program</th>
                       </tr>
                     </thead>
@@ -109,7 +111,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
 
                   <?php
                       $query = "SELECT tblstudents.Id,tblclass.className,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblstudents.firstName,
-                      tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
+                      tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
                       FROM tblstudents
                       INNER JOIN tblclass ON tblclass.Id = tblstudents.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblstudents.classArmId
@@ -127,7 +129,9 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                               <tr>
                                 <td>".$sn."</td>
                                 <td>".$rows['firstName']."</td>
+                                <td>".$rows['middleName']."</td>
                                 <td>".$rows['lastName']."</td>
+                                <td>".$rows['extName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
                                 <td>".$rows['className']."</td>
