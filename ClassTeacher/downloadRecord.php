@@ -8,16 +8,17 @@ include '../Includes/session.php';
         <thead>
             <tr>
             <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Other Name</th>
-            <th>Admission No</th>
-            <th>Class</th>
-            <th>Class Program</th>
-            <th>Semester</th>
-            <th>Term</th>
-            <th>Status</th>
-            <th>Date</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Ext Name</th>
+                        <th>Student No</th>
+                        <th>Class Code</th>
+                        <th>Class Program</th>
+                        <th>Quarter</th>
+                        <th>Term</th>
+                        <th>Status</th>
+                        <th>Date</th>
             </tr>
         </thead>
 
@@ -28,7 +29,7 @@ $dateTaken = date("Y-m-d");
 $cnt=1;
 $ret = mysqli_query($conn,"SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+        tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
         FROM tblattendance
         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -48,7 +49,10 @@ echo '
 <tr>
 <td>'.$cnt.'</td>
 <td>'.$firstName= $row['firstName'].'</td>
+<td>'.$middleName= $row['middleName'].'</td>
 <td>'.$lastName= $row['lastName'].'</td>
+<td>'.$extName= $row['extName'].'</td>
+
 <td>'.$otherName= $row['otherName'].'</td>
 <td>'.$admissionNumber= $row['admissionNumber'].'</td>
 <td>'.$className= $row['className'].'</td>

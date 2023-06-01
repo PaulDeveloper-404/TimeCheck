@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -28,7 +28,7 @@ include '../Includes/session.php';
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    } else { 
+    } else {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -86,7 +86,7 @@ include '../Includes/session.php';
                         <?php
                         $qry= "SELECT * FROM tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' ORDER BY firstName ASC";
                         $result = $conn->query($qry);
-                        $num = $result->num_rows;		
+                        $num = $result->num_rows;
                         if ($num > 0){
                           echo ' <select required name="admissionNumber" class="form-control mb-3">';
                           echo'<option value="">--Select Student--</option>';
@@ -95,7 +95,7 @@ include '../Includes/session.php';
                               }
                                   echo '</select>';
                               }
-                            ?>  
+                            ?>
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Type<span class="text-danger ml-2">*</span></label>
@@ -113,11 +113,11 @@ include '../Includes/session.php';
                     <!-- <div class="form-group row mb-3">
                         <div class="col-xl-6">
                         <label class="form-control-label">Select Student<span class="text-danger ml-2">*</span></label>
-                        
+
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Type<span class="text-danger ml-2">*</span></label>
-                        
+
                         </div>
                     </div> -->
                     <button type="submit" name="view" class="btn btn-primary">View Attendance</button>
@@ -136,20 +136,21 @@ include '../Includes/session.php';
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>#</th>
+                      <th>#</th>
                         <th>First Name</th>
+                        <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Other Name</th>
-                        <th>Admission No</th>
-                        <th>Class</th>
-                        <th>Class Arm</th>
-                        <th>Session</th>
+                        <th>Ext Name</th>
+                        <th>Student No</th>
+                        <th>Class Name</th>
+                        <th>Class Program</th>
+                        <th>Quarter</th>
                         <th>Term</th>
                         <th>Status</th>
                         <th>Date</th>
                       </tr>
                     </thead>
-                   
+
                     <tbody>
 
                   <?php
@@ -163,7 +164,7 @@ include '../Includes/session.php';
 
                         $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                        tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
                         FROM tblattendance
                         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -179,7 +180,7 @@ include '../Includes/session.php';
 
                          $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                        tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
                         FROM tblattendance
                         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -187,7 +188,7 @@ include '../Includes/session.php';
                         INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                         INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                         where tblattendance.dateTimeTaken = '$singleDate' and tblattendance.admissionNo = '$admissionNumber' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
-                        
+
 
                        }
                        if($type == "3"){ //Date Range Attendance
@@ -197,7 +198,7 @@ include '../Includes/session.php';
 
                          $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                         tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                        tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                        tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
                         FROM tblattendance
                         INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                         INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -205,7 +206,7 @@ include '../Includes/session.php';
                         INNER JOIN tblterm ON tblterm.Id = tblsessionterm.termId
                         INNER JOIN tblstudents ON tblstudents.admissionNumber = tblattendance.admissionNo
                         where tblattendance.dateTimeTaken between '$fromDate' and '$toDate' and tblattendance.admissionNo = '$admissionNumber' and tblattendance.classId = '$_SESSION[classId]' and tblattendance.classArmId = '$_SESSION[classArmId]'";
-                        
+
                        }
 
                       $rs = $conn->query($query);
@@ -213,7 +214,7 @@ include '../Includes/session.php';
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                               if($rows['status'] == '1'){$status = "Present"; $colour="#00FF00";}else{$status = "Absent";$colour="#FF0000";}
@@ -236,7 +237,7 @@ include '../Includes/session.php';
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
@@ -288,7 +289,7 @@ include '../Includes/session.php';
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

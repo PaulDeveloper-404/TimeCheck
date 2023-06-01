@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
@@ -83,6 +83,20 @@ include '../Includes/session.php';
                       <tr>
                         <th>#</th>
                         <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Ext Name</th>
+                        <th>Student No</th>
+                        <th>Class Name</th>
+                        <th>Class Program</th>
+                        <th>Quarter</th>
+                        <th>Term</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <!-- <th>#</th>
+                        <th>First Name</th>
                         <th>Last Name</th>
                         <th>Other Name</th>
                         <th>Admission No</th>
@@ -91,10 +105,7 @@ include '../Includes/session.php';
                         <th>Session</th>
                         <th>Term</th>
                         <th>Status</th>
-                        <th>Date</th>
-                      </tr>
-                    </thead>
-                   
+                        <th>Date</th> -->
                     <tbody>
 
                   <?php
@@ -103,9 +114,9 @@ include '../Includes/session.php';
 
                       $dateTaken =  $_POST['dateTaken'];
 
-                      $query = "SELECT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
+                      $query = "SELECT DISTINCT tblattendance.Id,tblattendance.status,tblattendance.dateTimeTaken,tblclass.className,
                       tblclassarms.classArmName,tblsessionterm.sessionName,tblsessionterm.termId,tblterm.termName,
-                      tblstudents.firstName,tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber
+                      tblstudents.firstName,tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber
                       FROM tblattendance
                       INNER JOIN tblclass ON tblclass.Id = tblattendance.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblattendance.classArmId
@@ -118,7 +129,7 @@ include '../Includes/session.php';
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                               if($rows['status'] == '1'){$status = "Present"; $colour="#00FF00";}else{$status = "Absent";$colour="#FF0000";}
@@ -127,7 +138,9 @@ include '../Includes/session.php';
                               <tr>
                                 <td>".$sn."</td>
                                  <td>".$rows['firstName']."</td>
+                                 <td>".$rows['middleName']."</td>
                                 <td>".$rows['lastName']."</td>
+                                <td>".$rows['extName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
                                 <td>".$rows['className']."</td>
@@ -141,7 +154,7 @@ include '../Includes/session.php';
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
@@ -193,7 +206,7 @@ include '../Includes/session.php';
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>

@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 error_reporting(0);
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
 
-    $query = "SELECT tblclass.className,tblclassarms.classArmName 
+    $query = "SELECT tblclass.className,tblclassarms.classArmName
     FROM tblclassteacher
     INNER JOIN tblclass ON tblclass.Id = tblclassteacher.classId
     INNER JOIN tblclassarms ON tblclassarms.Id = tblclassteacher.classArmId
@@ -30,19 +30,19 @@ include '../Includes/session.php';
           $qus=mysqli_query($conn,"select * from tblstudents  where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");
           while ($ros = $qus->fetch_assoc())
           {
-              $qquery=mysqli_query($conn,"insert into tblattendance(admissionNo,classId,classArmId,sessionTermId,status,dateTimeTaken) 
+              $qquery=mysqli_query($conn,"insert into tblattendance(admissionNo,classId,classArmId,sessionTermId,status,dateTimeTaken)
               value('$ros[admissionNumber]','$_SESSION[classId]','$_SESSION[classArmId]','$sessionTermId','0','$dateTaken')");
 
           }
         }
 
-  
-      
+
+
 
 
 
 if(isset($_POST['save'])){
-    
+
     $admissionNo=$_POST['admissionNo'];
 
     $check=$_POST['check'];
@@ -79,12 +79,12 @@ if(isset($_POST['save'])){
                       {
                           $statusMsg = "<div class='alert alert-danger' style='margin-right:700px;'>An error Occurred!</div>";
                       }
-                  
+
                 }
           }
       }
 
-   
+
 
 }
 
@@ -113,7 +113,7 @@ if(isset($_POST['save'])){
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    } else { 
+    } else {
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -175,20 +175,21 @@ if(isset($_POST['save'])){
                       <tr>
                         <th>#</th>
                         <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Other Name</th>
-                        <th>Admission No</th>
-                        <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Middle Name</th>
+                        <th>last Name</th>
+                        <th>Student No</th>
+                        <th>Class Code</th>
+                        <th>Class Name</th>
+                        <th>Class Program</th>
                         <th>Check</th>
                       </tr>
                     </thead>
-                    
+
                     <tbody>
 
                   <?php
                       $query = "SELECT tblstudents.Id,tblstudents.admissionNumber,tblclass.className,tblclass.Id As classId,tblclassarms.classArmName,tblclassarms.Id AS classArmId,tblstudents.firstName,
-                      tblstudents.lastName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
+                      tblstudents.lastName,tblstudents.middleName,tblstudents.extName,tblstudents.otherName,tblstudents.admissionNumber,tblstudents.dateCreated
                       FROM tblstudents
                       INNER JOIN tblclass ON tblclass.Id = tblstudents.classId
                       INNER JOIN tblclassarms ON tblclassarms.Id = tblstudents.classArmId
@@ -198,7 +199,7 @@ if(isset($_POST['save'])){
                       $sn=0;
                       $status="";
                       if($num > 0)
-                      { 
+                      {
                         while ($rows = $rs->fetch_assoc())
                           {
                              $sn = $sn + 1;
@@ -206,6 +207,7 @@ if(isset($_POST['save'])){
                               <tr>
                                 <td>".$sn."</td>
                                 <td>".$rows['firstName']."</td>
+                                <td>".$rows['middleName']."</td>
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
@@ -218,12 +220,12 @@ if(isset($_POST['save'])){
                       }
                       else
                       {
-                           echo   
+                           echo
                            "<div class='alert alert-danger' role='alert'>
                             No Record Found!
                             </div>";
                       }
-                      
+
                       ?>
                     </tbody>
                   </table>
@@ -273,7 +275,7 @@ if(isset($_POST['save'])){
   <!-- Page level custom scripts -->
   <script>
     $(document).ready(function () {
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable(); // ID From dataTable
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
